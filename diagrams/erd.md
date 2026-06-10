@@ -3,7 +3,7 @@ erDiagram
     USERS ||--o{ POSTS : "writes"
     USERS ||--o{ LIKES : "create"
     POSTS }|--|| TOPICS : "written about"
-    POSTS ||--o{ LIKES : "liked"
+    POSTS ||--o{ LIKES : """liked"
 
     
     
@@ -23,7 +23,6 @@ erDiagram
         int userId FK
         int topicId FK
     }
-
     TOPICS {
         int id PK
         string name
