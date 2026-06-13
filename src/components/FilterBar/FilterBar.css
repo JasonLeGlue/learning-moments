@@ -1,0 +1,12 @@
+.filter-bar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.topic-filter-bar {
+  margin-left: 2rem;
+}
+
+.post-search {
+  margin-right: 2rem;
+}
