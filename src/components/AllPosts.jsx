@@ -8,12 +8,15 @@ import { getAllTopics } from "../services/topicService.js";
 export const AllPosts = () => {
   const [allPosts, setAllPosts] = useState([]);
   const [allTopics, setAllTopics] = useState([]);
+  const [filteredTopic, setFilteredTopic] = useState([]);
   const [filteredPosts, setFilteredPosts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [selectedTopic, setSelectedTopic] = useState("");
 
   useEffect(() => {
     getAllPosts().then((postsArray) => {
       setAllPosts(postsArray);
+      setFilteredPosts(postsArray);
       console.log("posts set");
     });
   }, []);
@@ -21,27 +24,27 @@ export const AllPosts = () => {
   useEffect(() => {
     getAllTopics().then((topicsArray) => {
       setAllTopics(topicsArray);
+      setFilteredTopic(topicsArray);
       console.log("topics set");
     });
   }, []);
 
   useEffect(() => {
-    getAllPosts().then((postsArray) => {
-      setFilteredPosts(postsArray);
-    });
-  }, []);
-
-  useEffect(() => {
-    const foundPosts = allPosts.filter((post) =>
-      post.title.toLowerCase().includes(searchTerm.toLocaleLowerCase()),
+    const foundPosts = allPosts.filter(
+      (post) =>
+        post.title.toLowerCase().includes(searchTerm.toLocaleLowerCase()) &&
+        post.topic.id == filteredTopic,
     );
     setFilteredPosts(foundPosts);
-  }, [searchTerm]);
+  }, [searchTerm, filteredTopic]);
 
   return (
     <>
       <Navbar />
-      <FilterBar setSearchTerm={setSearchTerm} />
+      <FilterBar
+        setFilteredTopic={setFilteredTopic}
+        setSearchTerm={setSearchTerm}
+      />
       {filteredPosts.map((postObj) => {
         return <PostLine post={postObj} key={postObj.id} />;
       })}

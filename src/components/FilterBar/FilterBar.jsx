@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { getAllTopics } from "../../services/topicService";
 import "./FilterBar.css";
 
-export const FilterBar = ({ setSearchTerm }) => {
+export const FilterBar = ({ setFilteredTopic, setSearchTerm }) => {
   const [allTopics, setAllTopics] = useState([]);
 
   useEffect(() => {
@@ -15,7 +15,13 @@ export const FilterBar = ({ setSearchTerm }) => {
   return (
     <div className="filter-bar">
       <div className="topic-filter-bar">
-        <select name="topics" id="topics">
+        <select
+          onChange={(event) => {
+            setFilteredTopic(event.target.value);
+          }}
+          name="topics"
+          id="topics"
+        >
           <option value="0">Select a topic...</option>
           {allTopics.map((topic) => (
             <option value={topic.id} key={topic.id}>
