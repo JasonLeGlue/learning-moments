@@ -1,0 +1,13 @@
+.postDisplay {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.postTopic {
+    margin: 0 2rem;
+}
+
+.postLikes {
+    margin: 0;
+}
