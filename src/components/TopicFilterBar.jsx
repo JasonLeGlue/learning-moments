@@ -15,9 +15,10 @@ export const TopicFilterBar = () => {
 
 
     return <>
-        <label htmlFor="topics">Choose a topic:</label>
+        
         <select name="topics" id="topics">
-        {allTopics.map((topic) => `<option value="${topic.id}>${topic.name}</option>`)}
+        <option value="0">Select a topic...</option>
+        {allTopics.map((topic) => (<option value={topic.id}>{topic.name}</option>))}
         </select>
     </>
 }
