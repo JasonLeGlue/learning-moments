@@ -1,8 +1,23 @@
-
-import { AllPosts } from "./components/AllPosts"
+import { AllPosts } from "./components/AllPosts";
+import { Login } from "./components/auth/Login.jsx";
+import { Register } from "./components/auth/Register.jsx";
+import { ApplicationViews } from "./views/ApplicationViews.jsx";
+import { Authorized } from "./views/Authorized.jsx";
+import { Route, Routes } from "react-router-dom";
 
 export const App = () => {
-  return <>
-    <AllPosts />
-  </>
-}
+  return (
+    <Routes>
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+      <Route
+        path="*"
+        element={
+          <Authorized>
+            <ApplicationViews />
+          </Authorized>
+        }
+      />
+    </Routes>
+  );
+};

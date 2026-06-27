@@ -40,7 +40,6 @@ export const AllPosts = () => {
 
   return (
     <>
-      <Navbar />
       <FilterBar
         setFilteredTopic={setFilteredTopic}
         setSearchTerm={setSearchTerm}
